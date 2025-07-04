@@ -25,37 +25,78 @@ It is particularly suited for students, researchers, and instructors seeking tra
 
 We implement a simple dynamic New Keynesian model composed of:
 
-1. **IS Curve (Aggregate Demand Equation)**
-2. **New Keynesian Phillips Curve (Aggregate Supply Equation)**
-3. **Taylor Rule (Monetary Policy Rule)**
+### 1: Phillips Curve
 
-These equations represent the core of modern macroeconomic DSGE frameworks and provide a flexible structure for shock analysis and policy evaluation.
+The New Keynesian Phillips Curve (PC) links current inflation $\hat{\pi}_t$ to expected future inflation $E_t\{\hat{\pi}_{t+1}\}$, the output gap $\hat{y}_t$, and a cost-push shock $\varepsilon_t^s$:
+
+$$
+\hat{\pi}_t = \beta E_t \left\{ \hat{\pi}_{t+1} \right\} + \kappa \hat{y}_t + \varepsilon_t^s.
+$$
+
+### 2: IS Curve
+
+The dynamic IS curve is a log-linearization of the Euler equation that describes the intertemporal allocation of consumption by agents in the economy:
+
+$$
+\hat{y}_t = E_t \left\{ \hat{y}_{t+1} \right\} - \frac{1}{\sigma} \left( \hat{r}_t - E_t \left\{ \hat{\pi}_{t+1} \right\} \right) + \varepsilon_t^D.
+$$
+
+### 3: Monetary Policy Rule
+
+The monetary policy schedule (MP) is based on the Taylor rule. It links the nominal interest rate $\hat{r}_t$, which is controlled by the monetary authority, to inflation $\hat{\pi}_t$ and the output gap $\hat{y}_t$:
+
+$$
+\hat{r}_t = \phi^{\pi} \hat{\pi}_t + \phi^{y} \hat{y}_t + \varepsilon_t^R.
+$$
+
+The shock term follows an AR(1) process:
+
+$$
+\varepsilon_t^R = \rho_R \varepsilon_{t-1}^R + \eta_t^R, \quad \eta_t^R \sim \mathcal{N}(0, \sigma_R^2)
+$$
 
 ---
 
-## 🧪 What This Repository Does
+## ⚙️ Model Implementation in Julia
 
-- Defines the structural equations of the model using `MacroModelling.jl`
-- Calibrates model parameters consistent with the paper
-- Introduces three shocks:
-  - **Demand shock**
-  - **Supply (cost-push) shock**
-  - **Monetary policy shock**
-- Computes **impulse response functions (IRFs)**
-- Visualizes the effects on:
-  - Output gap  
-  - Inflation  
-  - Nominal interest rate  
-
----
-
-## 🛠 How to Run
-
-### 📦 Dependencies
-
-Install required Julia packages:
+### 1. Model Equations
 
 ```julia
-using Pkg
-Pkg.add(["MacroModelling", "StatsPlots"])
+@model NKThree begin
+    # IS curve
+    y[0]   = y[1] - (1/σ) * (r[0] - pi[1]) + s_D[0]
+
+    # Phillips curve
+    pi[0]  = β*pi[1] + ((1-θ)*(1-β*θ)/θ)*(σ+φ)*y[0] + s_S[0]
+
+    # Taylor rule
+    r[0]   = ρ*r[-1] + (1-ρ)*(φ_π*pi[0] + φ_y*y[0]) + s_r[0]
+
+    # Shock processes
+    s_D[0] = ρ_D*s_D[-1] + e_D[x]
+    s_S[0] = ρ_S*s_S[-1] + e_S[x]
+    s_r[0] = ρ_R*s_r[-1] + e_R[x]
+end
+```
+
+### 2. Calibration Parameters 
+
+```julia
+@parameters NKThree begin
+    β      = 0.99
+    σ      = 1.0
+    φ      = 1.0
+    θ      = 3/4
+    ε      = 6.0
+    ρ      = 0.0
+    φ_π    = 1.5
+    φ_y    = 0.5/4
+    ρ_D    = 0.9
+    ρ_S    = 0.9
+    ρ_R    = 0.4
+end
+```
+### 3. Plot and Simulate Shocks 
+```julia
+plot_irf(NKThree)
 ```
