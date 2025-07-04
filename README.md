@@ -104,8 +104,15 @@ plot_irf(nk_dsge)
 ### Demand Shock
 ![Demand Shock](irf_baseline_D.png)
 
+A 1% positive demand shock raises output and inflation, prompting the central bank to increase interest rates. The economy gradually returns to equilibrium depending on policy response strength.
+
 ### Supply Shock
 ![Supply Shock](irf_baseline_S.png)
 
+A 1% rise in inflation from a supply shock raises interest rates and reduces output. Over time, inflation and the output gap return to their steady-state values, influenced by policy parameters.
+
 ### Policy Shock
 ![Policy Shock](irf_baseline_R.png)
+
+A 1% increase in the nominal interest rate leads to a fall in demand, output, and inflation. The economy recovers over time as policy adjusts according to the Taylor rule.
+
