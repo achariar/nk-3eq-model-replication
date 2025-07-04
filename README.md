@@ -100,3 +100,12 @@ end
 ```julia
 plot_irf(NKThree)
 ```
+
+### Demand Shock
+![Demand Shock](irf_baseline_D.png)
+
+### Policy Shock
+![Policy Shock](irf_baseline_R.png)
+
+### Supply Shock
+![Supply Shock](irf_baseline_S.png)
