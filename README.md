@@ -62,7 +62,7 @@ $$
 ### 1. Model Equations
 
 ```julia
-@model NKThree begin
+@model nk_dsge begin
     # IS curve
     y[0]   = y[1] - (1/σ) * (r[0] - pi[1]) + s_D[0]
 
@@ -82,7 +82,7 @@ end
 ### 2. Calibration Parameters 
 
 ```julia
-@parameters NKThree begin
+@parameters nk_dsge begin
     β      = 0.99
     σ      = 1.0
     φ      = 1.0
@@ -98,7 +98,7 @@ end
 ```
 ### 3. Plot and Simulate Shocks 
 ```julia
-plot_irf(NKThree)
+plot_irf(nk_dsge)
 ```
 
 ### Demand Shock
