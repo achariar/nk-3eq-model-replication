@@ -29,9 +29,7 @@ We implement a simple dynamic New Keynesian model composed of:
 
 The New Keynesian Phillips Curve (PC) links current inflation $\hat{\pi}_t$ to expected future inflation $E_t\{\hat{\pi}_{t+1}\}$, the output gap $\hat{y}_t$, and a cost-push shock $\varepsilon_t^s$:
 
-$$
-\hat{\pi}_t = \beta E_t \left\{ \hat{\pi}_{t+1} \right\} + \kappa \hat{y}_t + \varepsilon_t^s.
-$$
+$\hat{\pi}_t = \beta E_t \left\{ \hat{\pi}_{t+1} \right\} + \kappa \hat{y}_t + \varepsilon_t^s.$
 
 ### 2: IS Curve
 
