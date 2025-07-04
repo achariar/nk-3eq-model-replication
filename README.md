@@ -1,4 +1,4 @@
-# nk-3eq-model-replication
+# The Analytics of the New Keynesian 3-Equation Model
 
 This repository replicates the core results of the paper:
 
