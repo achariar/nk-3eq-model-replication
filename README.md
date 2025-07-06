@@ -31,9 +31,6 @@ The New Keynesian Phillips Curve (PC) links current inflation $\hat{\pi}_t$ to e
 
 $\hat{\pi}_t = \beta E_t[\hat{\pi}_{t+1}] + \kappa \hat{y}_t + \varepsilon_t^s$
 
-\hat{\pi}_t = \beta E_t[\hat{\pi}_{t+1}] + \kappa \hat{y}_t + \varepsilon_t^s
-
-
 ### 2: IS Curve
 
 The dynamic IS curve is a log-linearization of the Euler equation that describes the intertemporal allocation of consumption by agents in the economy:
