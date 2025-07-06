@@ -21,34 +21,6 @@ It is particularly suited for students, researchers, and instructors seeking tra
 
 ---
 
-## 📘 Model Description
-
-We implement a simple dynamic New Keynesian model composed of:
-
-### 1: Phillips Curve
-
-The New Keynesian Phillips Curve (PC) links current inflation $\hat{\pi}_t$ to expected future inflation $E_t[\hat{\pi}_{t+1}]$, the output gap $\hat{y}_t$, and a cost-push shock $\varepsilon_t^s$:
-
-$\hat{\pi}_t = \beta E_t[\hat{\pi}_{t+1}] + \kappa \hat{y}_t + \varepsilon_t^s$
-
-### 2: IS Curve
-
-The dynamic IS curve is a log-linearization of the Euler equation that describes the intertemporal allocation of consumption by agents in the economy:
-
-$\hat{y}_t = E_t[\hat{y}_{t+1}] - \frac{1}{\sigma} (\hat{r}_t - E_t[\hat{\pi}_{t+1}]) + \varepsilon_t^D$
-
-### 3: Monetary Policy Rule
-
-The monetary policy schedule (MP) is based on the Taylor rule. It links the nominal interest rate $\hat{r}_t$, which is controlled by the monetary authority, to inflation $\hat{\pi}_t$ and the output gap $\hat{y}_t$:
-
-$\hat{r}_t = \phi^{\pi} \hat{\pi}_t + \phi^{y} \hat{y}_t + \varepsilon_t^R$
-
-The shock term follows an AR(1) process:
-
-$\varepsilon_t^R = \rho_R \varepsilon_{t-1}^R + \eta_t^R$, where $\eta_t^R \sim \mathcal{N}(0, \sigma_R^2)$
-
----
-
 ## ⚙️ Model Implementation in Julia
 
 ### 1. Model Equations
